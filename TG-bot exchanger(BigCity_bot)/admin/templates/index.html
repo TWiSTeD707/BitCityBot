@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Административная панель</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Л</div>
+        <div class="nav">
+            <button onclick="showSection('wallet')">Замена кошелька</button>
+            <button onclick="showSection('current-requests')">Текущие заявки</button>
+            <button onclick="showSection('pending-payments')">Ожидают оплаты</button>
+            <button onclick="showSection('request-history')">История заявок</button>
+            <button onclick="showSection('manage-status')">Управление статусами</button>
+            <button onclick="location.href='{{ url_for('logout') }}'">Выйти</button>
+        </div>
+
+        <div id="wallet" class="content active">
+            <div class="section">
+                <h2>Замена кошелька</h2>
+                <form>
+                    <label for="new-wallet">Новый кошелек:</label>
+                    <input type="text" id="new-wallet" name="new-wallet">
+                    <button type="submit">Сменить кошелек</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="current-requests" class="content">
+            <div class="section">
+                <h2>Текущие заявки</h2>
+                <p>Список текущих заявок...</p>
+            </div>
+        </div>
+
+        <div id="pending-payments" class="content">
+            <div class="section">
+                <h2>Ожидают оплаты</h2>
+                <p>Список заявок, ожидающих оплаты...</p>
+            </div>
+        </div>
+
+        <div id="request-history" class="content">
+            <div class="section">
+                <h2>История заявок</h2>
+                <p>История всех заявок...</p>
+            </div>
+        </div>
+
+        <div id="manage-status" class="content">
+            <div class="section">
+                <h2>Управление статусами заявок</h2>
+                <p>Интерфейс для подтверждения заявок как выполненных...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
